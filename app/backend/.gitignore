@@ -1,0 +1,16 @@
+# Python キャッシュ
+__pycache__/
+*.pyc
+*.pyo
+
+# 仮想環境
+.venv/
+venv/
+
+# 環境変数ファイル
+.env
+
+# OS / エディタ関連
+.DS_Store
+.idea/
+.vscode/
