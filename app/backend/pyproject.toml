@@ -1,0 +1,17 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "FastAPI backend (Python 3.13) managed by uv. Minimal API entrypoint and env-based settings."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi==0.119.0",
+    "pydantic-settings>=2,<3",
+    "uvicorn[standard]==0.37.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "ruff>=0.14.0",
+]
