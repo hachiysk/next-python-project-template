@@ -1,0 +1,55 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "FastAPI backend (Python 3.13) managed by uv. Minimal API entrypoint and env-based settings."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi==0.119.0",
+    "pydantic-settings>=2,<3",
+    "uvicorn[standard]==0.37.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "ruff>=0.14.0",
+]
+
+
+[tool.ruff]
+# Python 3.13 を想定
+target-version = "py313"
+line-length = 100
+src = ["app", "tests"]
+# 触らないパス
+extend-exclude = [".venv", "migrations", "dist", "build", "__pycache__"]
+
+[tool.ruff.lint]
+# 有効化するルールセット（最小だけど実用的）
+select = [
+  "E",   # pycodestyle（構文/スタイルの基本）
+  "F",   # pyflakes（未使用・未定義変数など）
+  "I",   # import 並び替え（isort 相当）
+  "UP",  # pyupgrade（文法のモダン化）
+  "B",   # bugbear（バグを生みやすいパターン）
+  "SIM", # 冗長なコードの単純化
+  "C4",  # 内包表記の改善
+  "ARG", # 未使用引数（_で回避）
+  "TRY", # 例外ハンドリングのアンチパターン
+  "PTH", # pathlib 推奨（os.path 過多の警告）
+  "DTZ", # タイムゾーンなし datetime の警告
+  "RUF"  # Ruff 独自（品質向上の小ネタ）
+]
+# 先にフォーマッターで整えるため、長さ系はチェックしない等の微調整
+ignore = ["E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+combine-as-imports = true
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+docstring-code-format = true
